@@ -1,0 +1,81 @@
+<%- include('./partials/head') %>
+  <header>
+    <%- include('partials/nav', {current: '/' }); %>
+  </header>
+
+  <main>
+
+    <div class="container">
+      <h1>Lessons</h1>
+
+      <div class="stage-btns">
+        <button class="sounds-btn">
+          <img src="/assets/light/music-note.svg" class="svg" alt="music note">
+          Sounds
+        </button>
+        <button class="words-btn">
+          <img src="/assets/light/music-note.svg" class="svg" alt="music note">
+          Words
+        </button>
+      </div>
+
+
+      <div class=" playlist-wrapper">
+        <h2>Playlists</h2>
+
+        <div class="playlist-container">
+          <div class="new-playlist playlist">
+            <p>Create a new playlist!</p>
+            <button aria-label="create new playlist"> <img src="/assets/light/add-sqaure.svg" alt="add to playlist">
+            </button>
+          </div>
+
+          <% playlists.forEach(playlist=> { %>
+            <a href="/playlist/<%- playlist.slug %>">
+              <article class="playlist">
+                <% if (playlist.image) { %><img src="https://fdnd-agency.directus.app/assets/<%= playlist.image %>"
+                    alt="playlist cover image">
+                  <% } %>
+                    <h3>
+                      <%= playlist.title %>
+                    </h3>
+                    <p>
+                      <%= playlist.description %>
+                    </p>
+                    <form action="/<%= playlist.slug %>" method="post">
+                      <input type="hidden" name="slug" value="<%= playlist.slug %>">
+                      <button type="submit" id="share">
+                        <img src="/assets/light/heart.svg">
+                      </button>
+                    </form>
+              </article>
+            </a>
+            <% }) %>
+        </div>
+      </div>
+
+      <div class="story-wrapper">
+        <h2><a href="/stories">Stories</a></h2>
+        <div class="story-container">
+          <% stories.forEach(story=> { %>
+
+            <article class="story">
+              <h3>
+                <%= story.title %>
+              </h3>
+              <% if (story.image) { %><img src="https://fdnd-agency.directus.app/assets/<%= story.image %>"
+                  alt="story cover image">
+                <% } %>
+
+                  <p>
+                    <%= story.summary %>
+                  </p>
+            </article>
+            <% }) %>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <%- include('./partials/foot') %>

@@ -1,0 +1,13 @@
+<%- include('./partials/head') %>
+  <header>
+    <%- include('partials/nav', {current: '/playlists' }); %>
+  </header>
+
+    <h1>
+      <%= playlists.title %>
+    </h1>
+    <p>
+      <%= playlists.description %>
+    </p>
+            
+  <%- include('./partials/foot') %>
