@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --poppins: "Poppins", Arial, Helvetica, sans-serif;
+
+  --primary-one: #121212;
+  --primary-two: #fff9f9;
+  --primary-three: #ececfc;
+
+  --menu-one: #3f92b6;
+  --accent-one: #3d7a95;
+  --menu-two: #599ae7;
+  --accent-two: #4d7eb7;
+  --menu-three: #954be2;
+  --accent-three: #451acf;
+  --menu-four: #06a192;
+  --accent-four: #078377;
+  --menu-five: #fd8c73;
+  --accent-five: #ea775e;
+
+  --color-one: #1cb854;
+  --color-two: #37c6ab;
+  --color-three: #059cc0;
+  --color-four: #ff8c59;
+  --color-five: #ffa02e;
+
+  --extra-color: #471871;
+  --extra-two: rgb(15, 112, 136);
+  --extra-three: #f48b0c;
+  --extra-four: #e0684e;
+
+  --like: #fb96b6;
+  --like-hover: #ff6464;
+  --like-active: #da3939;
+
+  --menu-layover: #292929; /* 95% opacity */
+
+  --gradient-one: linear-gradient(#3f93b7, #1c5872);
+  --gradient-two: linear-gradient(#471871, #040404);
+  --gradient-three: linear-gradient(#451971, #162152);
+
+  --method-one: #9264f4;
+  --method-two: #9264f4;
+  --method-three: #a170cf;
+  --method-gradient: linear-gradient(#471871, #142151);
+  --space-reg: 1.2rem;
+  --space-half: 0.6rem;
+  --space-small: 0.3rem;
+  --space-big: 1.8rem;
+  --space-third: 0.9rem;
+}
+
+/*  */
+
+* {
+  box-sizing: border-box;
+  color: var(--primary-one);
+  margin: 0;
+  padding: 0;
+  font-family: var(--poppins);
+}
+
+body {
+  line-height: 1.5;
+  background: var(--gradient-three);
+  min-height: 100vh;
+}
+
+main {
+  display: grid;
+  place-items: center;
+  margin: auto;
+  padding: var(--space-half);
+  overflow: hidden;
+}
+
+/** nav */
+
+header {
+  background-color: var(--primary-two);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-half);
+  border-bottom: 1px solid var(--menu-three);
+  width: 100vw;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    font-size: 0.9rem;
+  }
+
+  li {
+    margin-right: var(--space-half);
+    list-style: none;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+.active {
+  color: var(--menu-three);
+}
+
+/***/
+
+img {
+  width: 250px;
+  height: 250px;
+  border-radius: 6px;
+}
+
+
+/** fav playlists */
+
+.favs-list {
+  --bg: #954be290;
+  background-color: var(--bg);
+  width: 100%;
+  max-width: 45rem;
+  margin-bottom: var(--space-big);
+  padding: var(--space-reg);
+  border-radius: 20px;
+
+  h2 {
+    color: var(--primary-two);
+  }
+}
+
+.favs-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    color: var(--primary-two);
+    font-size: 1.5rem;
+  }
+}
+
+.favs-bg {
+  height: 15rem;
+  width: 12.5rem;
+  background-image: url(/assets/penguin1.svg);
+  background-repeat: no-repeat;
+  background-position: left;
+  animation: background 2.8s steps(4) infinite;
+}
+
+@keyframes background {
+  0% {
+    background-position: left;
+  }
+  15% {
+    background-position: right;
+  }
+  20% {
+    background-position: right;
+  }
+  40% {
+    background-position: left;
+  }
+  100% {
+    background-position: left;
+  }
+}

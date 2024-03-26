@@ -1,7 +1,35 @@
-<%- include('./partials/head') %>
+<%- include('./partials/overview-head') %>
   <header>
     <%- include('partials/nav', {current: '/playlists' }); %>
   </header>
 
+  <main>
+    <div class="container">
 
+      <section class="favs-list">
+        <h2>Favourite Playlists</h2>
+        <div class="favs-view">
+          <div class="favs-bg"></div>
+          <p>nothing here yet..</p>
+        </div>
+      </section>
+
+      <% playlists.forEach(item=> { %>
+        <article class="playlist">
+
+          <a href="/playlist/<%- item.slug %>">
+            <h1>
+              <%= item.title %>
+            </h1>
+          </a>
+          <p>
+            <%= item.description %>
+          </p>
+          <% if (item.image) { %><img src="https://fdnd-agency.directus.app/assets/<%= item.image %>"
+              alt="story cover image">
+            <% } %>
+        </article>
+        <% }) %>
+    </div>
+  </main>
   <%- include('./partials/foot') %>

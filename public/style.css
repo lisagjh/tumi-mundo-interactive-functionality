@@ -29,7 +29,7 @@
   --extra-three: #f48b0c;
   --extra-four: #e0684e;
 
-  --like: #ff8f8f;
+  --like: #fb96b6;
   --like-hover: #ff6464;
   --like-active: #da3939;
 
@@ -43,22 +43,6 @@
   --method-two: #9264f4;
   --method-three: #a170cf;
   --method-gradient: linear-gradient(#471871, #142151);
-
-  --stats-one: #27b26f;
-  --stats-two: #43756c;
-  --stats-three: #6fcfad;
-  --stats-method: linear-gradient(#219b9b, #1b7070);
-
-  --test-one: #599ae7;
-  --test-two: #424b75;
-  --test-three: #707fcf;
-  --test-method: linear-gradient(#21599b, #1b3d70);
-
-  --prof-one: #e76a59;
-  --prof-two: #754643;
-  --prof-three: #e98d7b;
-  --prof-method: linear-gradient(#f0775d, #b45751);
-
   --space-reg: 1.2rem;
   --space-half: 0.6rem;
   --space-small: 0.3rem;
@@ -111,6 +95,10 @@ h2 a:hover {
   text-decoration: underline;
 }
 
+h3 {
+  font-size: 1.3rem;
+}
+
 /** nav */
 
 header {
@@ -152,6 +140,10 @@ nav {
 
 /** containers */
 
+.container h1 {
+  margin-bottom: var(--space-big);
+}
+
 .playlist-wrapper,
 .story-wrapper {
   --space-big: 2rem;
@@ -165,6 +157,7 @@ nav {
   width: 100vw;
   overflow-x: scroll;
   scrollbar-color: var(--menu-three) var(--extra-color);
+  scroll-behavior: smooth;
   padding: var(--space-third);
 }
 
@@ -182,6 +175,8 @@ a {
 .playlist {
   display: grid;
   place-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10.75rem 3.25rem 7.25rem 2rem;
   background-color: var(--primary-two);
   min-width: 14rem;
   margin-right: var(--space-big);
@@ -190,30 +185,37 @@ a {
 
   h3 {
     text-align: center;
-    align-self: flex-start;
+    align-self: self-start;
   }
 
   img {
     align-self: flex-start;
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
     margin-top: var(--space-small);
     border-radius: 6px;
   }
 
   p {
+    align-self: flex-start;
     overflow: scroll;
   }
 }
 
 .playlist form {
+  display: flex;
+  align-self: flex-end;
+  justify-self: flex-end;
+
   button {
     display: grid;
     place-items: center;
     background-color: var(--like);
     border-radius: 50%;
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 2rem;
+    width: 2rem;
+    --space-small: 0.2rem;
+    padding: var(--space-small);
     transition: all 0.15s ease-in-out;
   }
 
@@ -228,8 +230,8 @@ a {
   }
 
   img {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -240,6 +242,7 @@ a {
   justify-content: center;
   background-color: #954be280;
   min-width: 14rem;
+  margin-right: var(--space-big);
   padding: var(--space-half) var(--space-small);
   border-radius: 6px;
 
@@ -312,45 +315,73 @@ a {
 
 /** story article */
 
+.story-container {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  overflow-x: scroll;
+  overflow-y: hidden;
+  column-gap: var(--space-reg);
+  row-gap: var(--space-reg);
+  height: fit-content;
+  padding: var(--space-reg) var(--space-half);
+  scrollbar-color: var(--menu-three) var(--extra-color);
+}
+
 .story {
   display: grid;
-  grid-template-areas: 
-  "a b b"
-  "a c c"
-  "d e f";
-  column-gap: var(--space-small);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   background-color: var(--primary-two);
-  height: fit-content;
-
+  height: 12.4rem;
+  width: 18rem;
   padding: var(--space-small);
-  margin-bottom: var(--space-big);
   border-radius: 6px;
 
-  h3 {
-    grid-area: b;
+  a {
+    grid-column: 2/4;
+    grid-row: 1/2;
+    align-self: center;
+    justify-self: start;
   }
 
   p {
-    grid-area: c;
-    align-self: flex-start;
-    text-overflow: ellipsis;
+    grid-column: 1/4;
+    grid-row: 2/3;
+    align-self: self-start;
+    height: 100%;
+    overflow: scroll;
   }
 
   img {
-    grid-area: a;
+    grid-column: 1/2;
+    grid-row: 1/2;
     align-self: center;
-    height: 60px;
-    width: 60px;
+    height: 75px;
+    width: 75px;
     border-radius: 2px;
   }
+}
+
+.story a:hover {
+  text-decoration: underline;
+}
+
+.playlist a:hover {
+  text-decoration: underline;
 }
 
 /** fav playlists */
 
 .favs-list {
+  --bg: #954be290;
+  background-color: var(--bg);
   width: 100%;
-  max-width: 40rem;
+  max-width: 45rem;
   margin-bottom: var(--space-big);
+  padding: var(--space-reg);
+  border-radius: 20px;
+
   h2 {
     color: var(--primary-two);
   }
@@ -360,10 +391,6 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  --bg: #954be290;
-  background-color: var(--bg);
-  padding: var(--space-reg);
-  border-radius: 20px;
 
   p {
     color: var(--primary-two);
@@ -377,12 +404,15 @@ a {
   background-image: url(/assets/penguin1.svg);
   background-repeat: no-repeat;
   background-position: left;
-  animation: background 3.3s steps(4) infinite;
+  animation: background 2.8s steps(4) infinite;
 }
 
 @keyframes background {
   0% {
     background-position: left;
+  }
+  15% {
+    background-position: right;
   }
   20% {
     background-position: right;
@@ -405,6 +435,8 @@ button {
   display: flex;
   flex-direction: row;
   column-gap: 10rem;
+  --space-big: 3rem;
+  margin-bottom: var(--space-big);
 }
 
 .stage-btns button {
@@ -418,10 +450,9 @@ button {
   border-radius: 6px;
   background-color: var(--color-one);
 
-  .svg {
-    width: 25px;
-    height: 25px;
-    margin: 0 var(--space-half);
+  img {
+    width: 1.6rem;
+    height: 1.6rem;
   }
 }
 
@@ -433,12 +464,20 @@ button {
   background-color: var(--accent-two);
 }
 
-/*  */
+.carousel-btn button {
+  display: grid;
+  place-items: center;
+  background-color: var(--menu-three);
+  padding: var(--space-half);
+  border-radius: 6px;
 
-.svg {
-  color: var(--primary-three);
-  width: 50px;
-  height: 50px;
+  img {
+    width: 1.3rem;
+  }
+}
+
+.carousel-btn a {
+  text-decoration: underline;
 }
 
 /* media query */
@@ -449,20 +488,15 @@ button {
     place-items: center;
   }
 
-  .top-content {
-    width: 100%;
-    max-width: 40rem;
-  }
-
   .story-wrapper,
   .playlist-wrapper {
     display: grid;
     width: 100%;
-    max-width: 40rem;
+    max-width: 50rem;
   }
 
   .playlist-container {
-    max-width: 40rem;
+    max-width: 50rem;
   }
 }
 
