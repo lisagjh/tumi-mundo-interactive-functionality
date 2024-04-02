@@ -54,7 +54,7 @@ app.get("/playlists", function (request, response) {
   });
 });
 
-const playlistSlug = fetchJson(apiUrl + "/tm_playlist?fields=slug");
+// detail pagina playlist
 
 app.get("/playlist/:slug", function (request, response) {
   const url = `${apiUrl}/tm_playlist?filter={"slug":{"_eq":"${request.params.slug}"}}`;
@@ -71,12 +71,24 @@ app.get("/playlist/:slug", function (request, response) {
 
 //! post voor fav playlists
 
+// route voor posten van de fav playlists
 app.post("/playlist/:slug", (request, response) => {
-  const url = `${apiUrl}/tm_playlist?filter={"slug":{"_eq":"${request.params.slug}"}}`;
-
-  fetchJson(url).then((result) => {
-    console.log(result);
+  // zoek in array of de playlist favoriet is
+  let huidig = favs.find((favs) => {
+    return favs.slug == request.params.slug;
   });
+  //als dit nog niet bestaat maken we favs aan
+  if (favs == undefined) {
+    favs.push({
+      slug: request.params.slug,
+      favs: 1,
+    });
+  }
+  // als het wel bestaat verwijderen uit favs
+  //! weet niet of dit klopt
+  else {
+    huidig.favs--;
+  }
   response.redirect(301, `/playlist/${request.params.slug}`);
 });
 

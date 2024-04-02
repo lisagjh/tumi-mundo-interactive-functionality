@@ -28,6 +28,14 @@
           <% if (item.image) { %><img src="https://fdnd-agency.directus.app/assets/<%= item.image %>"
               alt="story cover image">
             <% } %>
+
+              <form action="playlist/<%= item.slug %>" method="post">
+                <input type="hidden" name="slug" value="<%= item.slug %>">
+                <button type="submit" id="share">
+                  <img src="/assets/light/heart.svg">
+                </button>
+              </form>
+
         </article>
         <% }) %>
     </div>
