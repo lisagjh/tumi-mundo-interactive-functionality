@@ -6,26 +6,71 @@
   <main>
     <div class="container">
 
-      <section>
-        <h2>favs!</h2>
-        <ul>
-          <% favs.forEach(playlist=> { %>
-            <li>
-              <%= playlist.title %>
-            </li>
-            <!-- Add any other details you want to display for each liked playlist -->
-            <% }); %>
-        </ul>
-
-      </section>
 
 
       <section class="favs-list">
-        <h2>Favourite Playlists</h2>
-        <div class="favs-view">
-          <div class="favs-bg"></div>
-          <p>nothing here yet..</p>
+
+        <div class="top-content">
+          <h2>Favorite Playlists</h2>
+          <% if (favs.length>1) { %>
+            <p>(<%= favs.length %>) </p>
+            <% } %>
         </div>
+
+        <% if (favs.length===0) { %>
+          <div class="favs-view">
+            <div class="favs-bg"></div>
+            <p>nothing here yet..</p>
+          </div>
+
+          <% } else { %>
+            <div class="fav-playlists">
+              <% favs.forEach(playlist=> { %>
+                <article class="fav-playlist">
+                  <% if (playlist.image) { %><img src="https://fdnd-agency.directus.app/assets/<%= playlist.image %>"
+                      alt="playlist cover image">
+                    <% } %>
+                      <h3>
+                        <%= playlist.title %>
+                      </h3>
+
+                      <p>
+                        <%= playlist.description %>
+                      </p>
+
+                      <div class="playlist-story-length">
+                        <% if (playlist.stories.length===0) { %>
+                          <p>This playlist has no stories.</p>
+                          <% } else if (playlist.stories.length===1) { %>
+                            <p>
+                              <%= playlist.stories.length %> story
+                            </p>
+                            <% } else { %>
+                              <p>
+                                <%= playlist.stories.length %> stories
+                              </p>
+                              <% } %>
+                      </div>
+                </article>
+                <% }); %>
+            </div>
+            <% } %>
+
+              <% if (favs.length>2) { %>
+                <div class="carousel-btn">
+                  <button class="fav-prev-btn" aria-label="previous"><img src="/assets/light/arrow-left-light.svg"
+                      alt="arrow image"></button>
+                  <% favs.forEach(playlist=> { %>
+                    <a href="<%= playlist.id %>">
+                      <%= playlist.id %>
+                    </a>
+                    <% }) %>
+                      <button class="fav-next-btn" aria-label="next"><img src="/assets/light/arorw-right-light.svg"
+                          alt="arrow image"></button>
+                </div>
+                <% } %>
+
+
       </section>
 
       <% playlists.forEach(item=> { %>
