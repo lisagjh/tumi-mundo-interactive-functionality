@@ -13,10 +13,6 @@
           <img src="/assets/light/music-note.svg" class="svg" alt="music note">
           Sounds
         </button>
-        <!-- <button class="words-btn" disabled>
-          <img src="/assets/light/music-note.svg" class="svg" alt="music note">
-          Words
-        </button> -->
       </div>
 
 
@@ -45,20 +41,28 @@
                   </p>
 
                   <form action="/playlist/<%= playlist.slug %>/like" method="POST">
-                    <button type="submit">Like Playlist</button>
+                    <button class="like-button" aria-label="like">
+                      <svg class="unliked" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M11.6536 7.15238C11.8471 7.33832 12.1529 7.33832 12.3464 7.15238C13.1829 6.34871 14.326 5.75 15.6 5.75C18.1489 5.75 20.25 7.64769 20.25 10.0298C20.25 11.7261 19.4577 13.1809 18.348 14.428C17.2397 15.6736 15.7972 16.7316 14.4588 17.6376L12.1401 19.207C12.0555 19.2643 11.9445 19.2643 11.8599 19.207L9.54125 17.6376C8.20278 16.7316 6.76035 15.6736 5.65201 14.428C4.54225 13.1809 3.75 11.7261 3.75 10.0298C3.75 7.64769 5.85106 5.75 8.4 5.75C9.67403 5.75 10.8171 6.34871 11.6536 7.15238Z"
+                          stroke="#C4C4C4" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </button>
+
                   </form>
 
             </article>
             <% }) %>
         </div>
         <div class="carousel-btn">
-          <button class="playlist-prev-btn"><img src="/assets/light/arrow-left-light.svg"></button>
+          <button class="playlist-prev-btn" aria-label="previous"><img src="/assets/light/arrow-left-light.svg" alt="arrow image"></button>
           <% playlists.forEach(playlist=> { %>
             <a href="<%= playlist.id %>">
               <%= playlist.id %>
             </a>
             <% }) %>
-              <button class="playlist-next-btn"><img src="/assets/light/arorw-right-light.svg"></button>
+              <button class="playlist-next-btn" aria-label="next"><img src="/assets/light/arorw-right-light.svg" alt="arrow image"></button>
         </div>
       </section>
 
@@ -91,25 +95,64 @@
 
       <section class="favs-list">
 
-        <h2>Liked Playlists</h2>
+        <div class="top-content">
+          <h2>Favorite Playlists</h2>
+          <% if (favs.length>1) { %>
+            <p>(<%= favs.length %>) </p>
+            <% } %>
+        </div>
+
         <% if (favs.length===0) { %>
           <div class="favs-view">
             <div class="favs-bg"></div>
             <p>nothing here yet..</p>
           </div>
+
           <% } else { %>
-            <div class="liked-playlists">
+            <div class="fav-playlists">
               <% favs.forEach(playlist=> { %>
-                <article>
-                  <h3>
-                    <%= playlist.title %>
-                  </h3>
+                <article class="fav-playlist">
                   <% if (playlist.image) { %><img src="https://fdnd-agency.directus.app/assets/<%= playlist.image %>"
                       alt="playlist cover image">
                     <% } %>
+                      <h3>
+                        <%= playlist.title %>
+                      </h3>
+
+                      <p>
+                        <%= playlist.description %>
+                      </p>
+
+                      <div class="playlist-story-length">
+                        <% if (playlist.stories.length===0) { %>
+                          <p>This playlist has no stories.</p>
+                          <% } else if (playlist.stories.length===1) { %>
+                            <p>
+                              <%= playlist.stories.length %> story
+                            </p>
+                            <% } else { %>
+                              <p>
+                                <%= playlist.stories.length %> stories
+                              </p>
+                              <% } %>
+                      </div>
                 </article>
                 <% }); %>
-                  <% } %>
+            </div>
+            <% } %>
+
+              <% if (favs.length>2) { %>
+                <div class="carousel-btn">
+                  <button class="fav-prev-btn" aria-label="previous"><img src="/assets/light/arrow-left-light.svg" alt="arrow image"></button>
+                  <% favs.forEach(playlist=> { %>
+                    <a href="<%= playlist.id %>">
+                      <%= playlist.id %>
+                    </a>
+                    <% }) %>
+                      <button class="fav-next-btn" aria-label="next"><img src="/assets/light/arorw-right-light.svg" alt="arrow image"></button>
+                </div>
+                <% } %>
+
 
       </section>
 

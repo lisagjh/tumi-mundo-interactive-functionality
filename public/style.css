@@ -6,6 +6,8 @@
   --primary-one: #121212;
   --primary-two: #fff9f9;
   --primary-three: #dadfe1;
+  --grey: #6c6c6c;
+  --green: #0d7131;
 
   --menu-one: #3f92b6;
   --accent-one: #3d7a95;
@@ -206,33 +208,13 @@ a {
   display: flex;
   align-self: flex-end;
   justify-self: flex-end;
+}
 
-  button {
-    display: grid;
-    place-items: center;
-    background-color: var(--like);
-    border-radius: 50%;
-    height: 2rem;
-    width: 2rem;
-    --space-small: 0.2rem;
-    padding: var(--space-small);
-    transition: all 0.15s ease-in-out;
-  }
-
-  button:hover {
-    background-color: var(--like-hover);
-    scale: 1.05;
-  }
-
-  button:active {
-    background-color: var(--like-active);
-    scale: 0.95;
-  }
-
-  img {
-    width: 20px;
-    height: 20px;
-  }
+.like-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
 }
 
 .new-playlist {
@@ -374,6 +356,8 @@ a {
 /** fav playlists */
 
 .favs-list {
+  display: flex;
+  flex-direction: column;
   --bg: #954be290;
   background-color: var(--bg);
   width: 100%;
@@ -382,8 +366,20 @@ a {
   padding: var(--space-reg);
   border-radius: 20px;
 
-  h2 {
-    color: var(--primary-two);
+  .top-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-half);
+
+    h2 {
+      color: var(--primary-two);
+    }
+
+    p {
+      color: var(--primary-two);
+    }
   }
 }
 
@@ -425,6 +421,55 @@ a {
   }
 }
 
+.fav-playlists {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-big);
+  padding: var(--space-big);
+  overflow: auto;
+  scroll-behavior: smooth;
+  scrollbar-color: var(--menu-three) var(--extra-color);
+}
+
+.fav-playlist {
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10.75rem 3.25rem 7.25rem 2rem;
+  background-color: var(--primary-two);
+  width: 15rem;
+  min-width: 15rem;
+  margin-right: var(--space-half);
+  padding: var(--space-half) var(--space-small);
+  border-radius: 6px;
+  overflow: hidden;
+
+  h3 {
+    text-align: center;
+    align-self: center;
+  }
+
+  p {
+    text-overflow: ellipsis;
+    align-self: self-start;
+  }
+
+  img {
+    align-self: flex-start;
+    width: 160px;
+    height: 160px;
+    margin-top: var(--space-small);
+    border-radius: 6px;
+  }
+
+  .playlist-story-length {
+    align-self: flex-start;
+    p {
+      color: var(--grey);
+    }
+  }
+}
+
 /** buttons */
 
 button {
@@ -448,7 +493,7 @@ button {
   width: 12rem;
   padding: var(--space-small);
   border-radius: 6px;
-  background-color: var(--color-one);
+  background-color: var(--green);
 
   img {
     width: 1.6rem;
@@ -460,9 +505,7 @@ button {
   align-self: center;
 }
 
-.stage-btns button:nth-of-type(2) {
-  background-color: var(--accent-two);
-}
+/*  */
 
 .carousel-btn button {
   display: grid;
