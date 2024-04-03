@@ -59,38 +59,45 @@ app.get("/playlists", function (request, response) {
 app.get("/playlist/:slug", function (request, response) {
   const url = `${apiUrl}/tm_playlist?filter={"slug":{"_eq":"${request.params.slug}"}}`;
 
-  console.log(url);
   fetchJson(url).then((playlistData) => {
-    console.log("pipo", playlistData);
     response.render("playlist-detail", {
       playlist: playlistData.data,
       stories: storiesData.data,
+      favs: favs,
     });
   });
 });
 
 //! post voor fav playlists
 
-// route voor posten van de fav playlists
-app.post("/playlist/:slug", (request, response) => {
-  // zoek in array of de playlist favoriet is
-  let huidig = favs.find((favs) => {
-    return favs.slug == request.params.slug;
-  });
-  //als dit nog niet bestaat maken we favs aan
-  if (favs == undefined) {
-    favs.push({
-      slug: request.params.slug,
-      favs: 1,
-    });
+// POST route for liking a playlist
+app.post("/playlist/:slug/like", function (request, response) {
+  // Extract the playlist ID from the request parameters
+  const playlistSlug = request.params.slug;
+
+  // Check if the playlist ID exists
+  const playlist = playlistsData.data.find(
+    (playlist) => playlist.slug === playlistSlug
+  );
+
+  // If the playlist is found, add it to the favs array
+  if (playlist) {
+    // Check if the playlist is already in the favs array
+    if (!favs.some(item => item.slug === playlist.slug)) {
+      // Add the playlist to the favs array
+      favs.push(playlist);
+      console.log("Playlist added to favs:", playlist);
+    } else {
+      console.log("Playlist is already in favs:", playlist);
+    }
+  } else {
+    console.log("Playlist not found with slug:", playlistSlug);
   }
-  // als het wel bestaat verwijderen uit favs
-  //! weet niet of dit klopt
-  else {
-    huidig.favs--;
-  }
-  response.redirect(301, `/playlist/${request.params.slug}`);
+
+  // Redirect back to the home page after liking the playlist
+  response.redirect(303, '/')
 });
+
 
 // Start the server
 const PORT = process.env.PORT || 8000;

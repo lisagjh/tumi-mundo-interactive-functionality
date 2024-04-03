@@ -13,54 +13,55 @@
           <img src="/assets/light/music-note.svg" class="svg" alt="music note">
           Sounds
         </button>
-        <button class="words-btn" disabled>
+        <!-- <button class="words-btn" disabled>
           <img src="/assets/light/music-note.svg" class="svg" alt="music note">
           Words
-        </button>
+        </button> -->
       </div>
 
 
-      <h2>Playlists</h2>
+      <section class="playlist-wrapper">
+        <h2>Playlists</h2>
 
-      <div class="playlist-container">
-        <div class="new-playlist">
-          <p>Create a new playlist!</p>
-          <button aria-label="create new playlist"> <img src="/assets/light/add-sqaure.svg" alt="add to playlist">
-          </button>
+        <div class="playlist-container">
+          <div class="new-playlist">
+            <p>Create a new playlist!</p>
+            <button aria-label="create new playlist"> <img src="/assets/light/add-sqaure.svg" alt="add to playlist">
+            </button>
+          </div>
+
+          <% playlists.forEach(playlist=> { %>
+            <article class="playlist">
+              <% if (playlist.image) { %><img src="https://fdnd-agency.directus.app/assets/<%= playlist.image %>"
+                  alt="playlist cover image">
+                <% } %>
+                  <a href="/playlist/<%- playlist.slug %>">
+                    <h3>
+                      <%= playlist.title %>
+                    </h3>
+                  </a>
+                  <p>
+                    <%= playlist.description %>
+                  </p>
+
+                  <form action="/playlist/<%= playlist.slug %>/like" method="POST">
+                    <button type="submit">Like Playlist</button>
+                  </form>
+
+            </article>
+            <% }) %>
         </div>
+        <div class="carousel-btn">
+          <button class="playlist-prev-btn"><img src="/assets/light/arrow-left-light.svg"></button>
+          <% playlists.forEach(playlist=> { %>
+            <a href="<%= playlist.id %>">
+              <%= playlist.id %>
+            </a>
+            <% }) %>
+              <button class="playlist-next-btn"><img src="/assets/light/arorw-right-light.svg"></button>
+        </div>
+      </section>
 
-        <% playlists.forEach(playlist=> { %>
-          <article class="playlist">
-            <% if (playlist.image) { %><img src="https://fdnd-agency.directus.app/assets/<%= playlist.image %>"
-                alt="playlist cover image">
-              <% } %>
-                <a href="/playlist/<%- playlist.slug %>">
-                  <h3>
-                    <%= playlist.title %>
-                  </h3>
-                </a>
-                <p>
-                  <%= playlist.description %>
-                </p>
-                <form action="/<%= playlist.slug %>" method="post">
-                  <input type="hidden" name="slug" value="<%= playlist.slug %>">
-                  <button type="submit" id="share">
-                    <img src="/assets/light/heart.svg">
-                  </button>
-                </form>
-          </article>
-          <% }) %>
-      </div>
-
-      <div class="carousel-btn">
-        <button class="playlist-prev-btn"><img src="/assets/light/arrow-left-light.svg"></button>
-        <% playlists.forEach(playlist=> { %>
-          <a href="<%= playlist.id %>">
-            <%= playlist.id %>
-          </a>
-          <% }) %>
-            <button class="playlist-next-btn"><img src="/assets/light/arorw-right-light.svg"></button>
-      </div>
 
       <section class="story-wrapper">
         <h2><a href="/stories">Stories</a></h2>
@@ -87,13 +88,31 @@
 
       </section>
 
+
       <section class="favs-list">
-        <h2>Favourite Playlists</h2>
-        <div class="favs-view">
-          <div class="favs-bg"></div>
-          <p>nothing here yet..</p>
-        </div>
+
+        <h2>Liked Playlists</h2>
+        <% if (favs.length===0) { %>
+          <div class="favs-view">
+            <div class="favs-bg"></div>
+            <p>nothing here yet..</p>
+          </div>
+          <% } else { %>
+            <div class="liked-playlists">
+              <% favs.forEach(playlist=> { %>
+                <article>
+                  <h3>
+                    <%= playlist.title %>
+                  </h3>
+                  <% if (playlist.image) { %><img src="https://fdnd-agency.directus.app/assets/<%= playlist.image %>"
+                      alt="playlist cover image">
+                    <% } %>
+                </article>
+                <% }); %>
+                  <% } %>
+
       </section>
+
     </div>
   </main>
 

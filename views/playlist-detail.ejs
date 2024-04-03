@@ -21,12 +21,7 @@
               <%= item.description %>
             </p>
 
-            <form action="/playlist/<%= playlist.slug %>" method="post">
-              <input type="hidden" name="slug" value="<%= playlist.slug %>">
-              <button type="submit" id="share">
-                <img src="/assets/light/heart.svg">
-              </button>
-            </form>
+    
 
             <section class="story">
               <% stories.forEach(story=> { %>

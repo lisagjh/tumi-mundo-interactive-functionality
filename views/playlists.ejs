@@ -6,6 +6,20 @@
   <main>
     <div class="container">
 
+      <section>
+        <h2>favs!</h2>
+        <ul>
+          <% favs.forEach(playlist=> { %>
+            <li>
+              <%= playlist.title %>
+            </li>
+            <!-- Add any other details you want to display for each liked playlist -->
+            <% }); %>
+        </ul>
+
+      </section>
+
+
       <section class="favs-list">
         <h2>Favourite Playlists</h2>
         <div class="favs-view">
@@ -28,13 +42,6 @@
           <% if (item.image) { %><img src="https://fdnd-agency.directus.app/assets/<%= item.image %>"
               alt="story cover image">
             <% } %>
-
-              <form action="playlist/<%= item.slug %>" method="post">
-                <input type="hidden" name="slug" value="<%= item.slug %>">
-                <button type="submit" id="share">
-                  <img src="/assets/light/heart.svg">
-                </button>
-              </form>
 
         </article>
         <% }) %>
