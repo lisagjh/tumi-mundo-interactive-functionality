@@ -13,7 +13,7 @@ Ontwerp en ontwikkel een interactieve toepassing die voor iedereen toegankelijk 
 ## Beschrijving
 
 [De live website is hier te bekijken!
-](https://tumi-mundo-server-side-website.onrender.com/)
+](https://filthy-pike-garters.cyclic.app/)
 
 ![poster-TM](https://github.com/lisagjh/tumi-mundo-server-side-website/assets/131701505/3e298e13-9384-468f-9d00-99e2b231e337)
 
@@ -29,6 +29,8 @@ Dit project is ontwikkeld in opdracht van TuMi Mundo.
 * Express
 * EJS
 * Directus
+* Progressive Enhancement
+  * Ik heb progressive enhancement ingezet door eerst de functionaliteiten te bouwen, zodat het werkt en daarna pas dingen er om heen toe te voegen.
 
 ## Installatie
 1. Installeer NodeJS.
