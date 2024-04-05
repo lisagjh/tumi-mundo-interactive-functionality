@@ -331,8 +331,9 @@ a {
     grid-column: 1/4;
     grid-row: 2/3;
     align-self: self-start;
-    height: 100%;
-    overflow: scroll;
+    max-height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   img {

@@ -121,10 +121,11 @@ img {
   border-radius: 6px;
 }
 
-
 /** fav playlists */
 
 .favs-list {
+  display: flex;
+  flex-direction: column;
   --bg: #954be290;
   background-color: var(--bg);
   width: 100%;
@@ -133,8 +134,20 @@ img {
   padding: var(--space-reg);
   border-radius: 20px;
 
-  h2 {
-    color: var(--primary-two);
+  .top-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-half);
+
+    h2 {
+      color: var(--primary-two);
+    }
+
+    p {
+      color: var(--primary-two);
+    }
   }
 }
 
@@ -173,5 +186,66 @@ img {
   }
   100% {
     background-position: left;
+  }
+}
+
+.fav-playlists {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-big);
+  padding: var(--space-big);
+  overflow: auto;
+  scroll-behavior: smooth;
+  scrollbar-color: var(--menu-three) var(--extra-color);
+}
+
+.fav-playlist {
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10.75rem 3.25rem 7.25rem 2rem;
+  background-color: var(--primary-two);
+  width: 15rem;
+  min-width: 15rem;
+  margin-right: var(--space-half);
+  padding: var(--space-half) var(--space-small);
+  border-radius: 6px;
+  overflow: hidden;
+
+  h3 {
+    text-align: center;
+    align-self: center;
+  }
+
+  p {
+    text-overflow: ellipsis;
+    align-self: self-start;
+  }
+
+  img {
+    align-self: flex-start;
+    width: 160px;
+    height: 160px;
+    margin-top: var(--space-small);
+    border-radius: 6px;
+  }
+
+  .playlist-story-length {
+    align-self: flex-start;
+    p {
+      color: var(--grey);
+    }
+  }
+}
+
+.carousel-btn button {
+  display: grid;
+  place-items: center;
+  background-color: var(--menu-three);
+  padding: var(--space-half);
+  border-radius: 6px;
+
+  img {
+    width: 1.3rem;
   }
 }

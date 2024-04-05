@@ -68,6 +68,22 @@ app.get("/playlist/:slug", function (request, response) {
   });
 });
 
+//! post voor maken van playlists
+
+// POST route for creating a new playlist
+app.post("/playlist/create", function (request, response) {
+  // Extract data from the request body
+  const { title, coverImage, description, selectedStories } = request.body;
+
+  // You can then process this data (e.g., save it to a database)
+  // For now, we'll just log the data
+  console.log("New Playlist Data:", { title, coverImage, description, selectedStories });
+
+  // Redirect to the home page after playlist creation
+  response.redirect("/");
+});
+
+
 //! post voor fav playlists
 
 // POST route for liking a playlist

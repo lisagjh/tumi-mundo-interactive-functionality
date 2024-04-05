@@ -1,3 +1,5 @@
+// playlist carousel
+
 const itemWidth = 253;
 const nextPlaylist = document.querySelector(".playlist-next-btn");
 const prevPlaylist = document.querySelector(".playlist-prev-btn");
@@ -11,7 +13,6 @@ prevPlaylist.addEventListener("click", function () {
 nextPlaylist.addEventListener("click", function () {
   listPlaylist.scrollLeft += itemWidth;
 });
-
 
 // fav list carousel buttons
 
